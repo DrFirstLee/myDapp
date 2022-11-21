@@ -39,7 +39,7 @@ const MyNft: NextPage = () => {
       flexDir="column"
     >
       <Text mb={8} fontWeight="bold" fontSize="4xl">
-        STORY
+        내 NFT
       </Text>
       <Grid templateColumns="repeat(4, 1fr)" gap={8}>
         {nftTokenIds?.map((v, i) => {
