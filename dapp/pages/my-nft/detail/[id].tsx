@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const detail: NextPage = () => {
+const Detail: NextPage = () => {
   const [metadata, setMetadata] = useState<IMetadata>();
 
   const router = useRouter();
@@ -73,4 +73,4 @@ const detail: NextPage = () => {
   );
 };
 
-export default detail;
+export default Detail;
