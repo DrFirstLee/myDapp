@@ -10,8 +10,9 @@
     string public metadataURI;
     uint public totalNFT;
 
-    constructor(string memory _name, string memory _symbol ,string memory _metadataURI) ERC721(_name, _symbol) {
+    constructor(string memory _name, string memory _symbol ,string memory _metadataURI, uint _totalNFT) ERC721(_name, _symbol) {
         metadataURI = _metadataURI;
+        totalNFT = _totalNFT;
     }
 
     function mintNFT() public onlyOwner {
@@ -27,12 +28,19 @@
             mintNFT();
         }
     }
-    
-   function setTotalNFT(uint _totalNFT) public onlyOwner {
-       totalNFT = _totalNFT;
-   }
 
     function tokenURI(uint _tokenId) public override view returns(string memory) {
         return string(abi.encodePacked(metadataURI, '/', Strings.toString(_tokenId), '.json'));
+    }
+
+    function getNFTs(address _owner) public view returns(uint[] memory) {
+        require(balanceOf(_owner) > 0, "Owner does not have NFT.");
+        uint[] memory myNFTs = new uint[](balanceOf(_owner));
+        
+        for(uint i = 0; i < balanceOf(_owner); i++) {
+            myNFTs[i] = tokenOfOwnerByIndex(_owner, i); 
+        }
+ 
+        return myNFTs;
     }
  }
